@@ -1,12 +1,12 @@
 'use strict'
 
 var Reflux = require('reflux');
-var action = require('./action');
+var action = require('./action.js');
 
 var ToDoStore = Reflux.createStore({
     listenables : action ,
     onAddItem: function(data){
-        alert(data);
+        console.log(data);
     }
 });
 

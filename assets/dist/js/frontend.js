@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("'use strict';\n\nvar React = __webpack_require__(1);\n\nvar action = __webpack_require__(158);\nvar store = __webpack_require__(178);\nvar TodoForm = React.createClass({\n  displayName: 'TodoForm',\n\n  getInitialState: function getInitialState() {\n    return { text: '' };\n  },\n\n  render: function render() {\n    return React.createElement(\n      'form',\n      { onSubmit: this._handleFormSubmit },\n      React.createElement('input', { onChange: this._handleTodoOnChange, value: this.state.text }),\n      React.createElement(\n        'button',\n        null,\n        'add'\n      )\n    );\n  },\n\n  _handleTodoOnChange: function _handleTodoOnChange(e) {\n    this.setState({ text: e.target.value });\n  },\n\n  _handleFormSubmit: function _handleFormSubmit(e) {\n    action.itemAdded(this.state.text);\n    console.log(this.state.text);\n    this.setState({ text: '' });\n    e.preventDefault();\n  }\n});\n\nvar TodoApp = React.createClass({\n  displayName: 'TodoApp',\n\n  getInitialState: function getInitialState() {\n    return { items: [] };\n  },\n  render: function render() {\n    return React.createElement(\n      'div',\n      null,\n      React.createElement(\n        'h3',\n        null,\n        'Todo App'\n      ),\n      React.createElement(TodoForm, null)\n    );\n  }\n});\n\nReact.render(React.createElement(TodoApp, null), document.getElementById('app'));\n\n/*****************\n ** WEBPACK FOOTER\n ** ./assets/src/frontend/frontend.js\n ** module id = 0\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./assets/src/frontend/frontend.js?");
+	eval("'use strict';\n\nvar React = __webpack_require__(1);\nvar Reflux = __webpack_require__(159);\nvar action = __webpack_require__(158);\nvar store = __webpack_require__(178);\n\nvar TodoForm = React.createClass({\n  displayName: 'TodoForm',\n\n  getInitialState: function getInitialState() {\n    return { text: '' };\n  },\n  render: function render() {\n    return React.createElement(\n      'form',\n      { onSubmit: this._handleFormSubmit },\n      React.createElement('input', { onChange: this._handleTodoOnChange,\n        value: this.state.text }),\n      React.createElement(\n        'button',\n        null,\n        'add'\n      )\n    );\n  },\n  _handleTodoOnChange: function _handleTodoOnChange(e) {\n    this.setState({ text: e.target.value });\n  },\n  _handleFormSubmit: function _handleFormSubmit(e) {\n    action.addItem(this.state.text);\n    this.setState({ text: '' });\n    e.preventDefault();\n  }\n});\n\nvar TodoApp = React.createClass({\n  displayName: 'TodoApp',\n\n  getInitialState: function getInitialState() {\n    return { items: [] };\n  },\n  render: function render() {\n    return React.createElement(\n      'div',\n      null,\n      React.createElement(\n        'h3',\n        null,\n        'Todo App'\n      ),\n      React.createElement(TodoForm, null)\n    );\n  }\n});\n\nReact.render(React.createElement(TodoApp, null), document.getElementById('app'));\n\n/*****************\n ** WEBPACK FOOTER\n ** ./assets/src/frontend/frontend.js\n ** module id = 0\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./assets/src/frontend/frontend.js?");
 
 /***/ },
 /* 1 */
@@ -992,7 +992,7 @@
 /* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("'use strict';\n\nvar Reflux = __webpack_require__(159);\n\nvar TodoActions = Reflux.createActions(['addItem', 'deleteItem']);\nTodoActions.addItem.preEmit = function (data) {\n\t\talert(data);\n};\n\nmodule.exports = TodoActions;\n\n/*****************\n ** WEBPACK FOOTER\n ** ./assets/src/frontend/action.js\n ** module id = 158\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./assets/src/frontend/action.js?");
+	eval("'use strict';\n\nvar Reflux = __webpack_require__(159);\n\nvar TodoActions = Reflux.createActions(['addItem', 'deleteItem']);\n\nmodule.exports = TodoActions;\n\n/*****************\n ** WEBPACK FOOTER\n ** ./assets/src/frontend/action.js\n ** module id = 158\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./assets/src/frontend/action.js?");
 
 /***/ },
 /* 159 */
@@ -1112,7 +1112,7 @@
 /* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("'use strict';\n\nvar Reflux = __webpack_require__(159);\nvar action = __webpack_require__(158);\n\nvar ToDoStore = Reflux.createStore({\n    listenables: action,\n    onAddItem: function onAddItem(data) {\n        alert(data);\n    }\n});\n\nmodule.exports = ToDoStore;\n\n/*****************\n ** WEBPACK FOOTER\n ** ./assets/src/frontend/store.js\n ** module id = 178\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./assets/src/frontend/store.js?");
+	eval("'use strict';\n\nvar Reflux = __webpack_require__(159);\nvar action = __webpack_require__(158);\n\nvar ToDoStore = Reflux.createStore({\n    listenables: action,\n    onAddItem: function onAddItem(data) {\n        console.log(data);\n    }\n});\n\nmodule.exports = ToDoStore;\n\n/*****************\n ** WEBPACK FOOTER\n ** ./assets/src/frontend/store.js\n ** module id = 178\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./assets/src/frontend/store.js?");
 
 /***/ }
 /******/ ]);
